@@ -21,7 +21,7 @@ onMounted(() => {
   }
 })
 
-const loadCoordinates = async () => {
+async function loadCoordinates() {
   await refresh()
   if (data.value) {
     coordinates.value = [...coordinates.value, ...data.value]
@@ -33,6 +33,8 @@ const loadCoordinates = async () => {
 <template>
   <div class="max-w-sm mx-auto p-4">
     <CoordinateList :coordinates="coordinates" />
-    <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600" @click="loadCoordinates">Load More</button>
+    <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600" @click="loadCoordinates">
+      Load More
+    </button>
   </div>
 </template>

@@ -3,14 +3,14 @@ const supabase = useSupabaseClient()
 const email = ref('')
 const password = ref('')
 
-const signInWithPassword = async () => {
-  const { error } = await supabase.auth.signInWithPassword({
+async function signInWithPassword() {
+  await supabase.auth.signInWithPassword({
     email: email.value,
     password: password.value,
   })
-  if (error) console.log(error)
 }
 </script>
+
 <template>
   <div>
     <button @click="signInWithPassword">
