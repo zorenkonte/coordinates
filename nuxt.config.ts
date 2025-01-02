@@ -6,5 +6,7 @@ export default defineNuxtConfig({
     '@nuxtjs/supabase',
     '@nuxt/eslint',
     '@nuxtjs/tailwindcss',
+    '@nuxt/fonts',
   ],
+  css: ['~/assets/css/main.css'],
 })
