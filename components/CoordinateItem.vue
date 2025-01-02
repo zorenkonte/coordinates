@@ -1,17 +1,55 @@
 <template>
   <li class="border border-gray-300 rounded-lg p-4 shadow-sm">
-    <p><strong>CAN:</strong> {{ coordinate.can }}</p>
-    <p><strong>Meter Code:</strong> {{ coordinate.meter_code }}</p>
-    <p><strong>MRU:</strong> {{ coordinate.mru }}</p>
-    <p><strong>BA:</strong> {{ coordinate.ba }}</p>
-    <p><strong>Name:</strong> {{ coordinate.name }}</p>
-    <p><strong>Address:</strong> {{ coordinate.address }}</p>
-    <p><strong>Street:</strong> {{ coordinate.street }}</p>
-    <p><strong>DMA:</strong> {{ coordinate.dma }}</p>
-    <p><strong>DMZ:</strong> {{ coordinate.dmz }}</p>
-    <p><strong>Latitude:</strong> {{ coordinate.lat }}</p>
-    <p><strong>Longitude:</strong> {{ coordinate.long }}</p>
-    <p><strong>Source:</strong> {{ coordinate.source }}</p>
+    <dl class="mt-2 divide-y divide-gray-200">
+      <div class="flex justify-between py-3 text-sm font-medium border-t border-gray-200">
+        <dt class="text-gray-500">CAN</dt>
+        <dd class="whitespace-nowrap text-gray-900">{{ coordinate.can }}</dd>
+      </div>
+      <div class="flex justify-between py-3 text-sm font-medium">
+        <dt class="text-gray-500">Meter Code</dt>
+        <dd class="whitespace-nowrap text-gray-900">{{ coordinate.meter_code }}</dd>
+      </div>
+      <div class="flex justify-between py-3 text-sm font-medium">
+        <dt class="text-gray-500">MRU</dt>
+        <dd class="whitespace-nowrap text-gray-900">{{ coordinate.mru }}</dd>
+      </div>
+      <div class="flex justify-between py-3 text-sm font-medium">
+        <dt class="text-gray-500">BA</dt>
+        <dd class="whitespace-nowrap text-gray-900">{{ coordinate.ba }}</dd>
+      </div>
+      <div class="flex justify-between py-3 text-sm font-medium">
+        <dt class="text-gray-500">Name</dt>
+        <dd class="whitespace-nowrap text-gray-900">{{ coordinate.name }}</dd>
+      </div>
+      <div class="flex justify-between py-3 text-sm font-medium">
+        <dt class="text-gray-500">Address</dt>
+        <dd class="whitespace-nowrap text-gray-900">{{ coordinate.address }}</dd>
+      </div>
+      <div class="flex justify-between py-3 text-sm font-medium">
+        <dt class="text-gray-500">Street</dt>
+        <dd class="whitespace-nowrap text-gray-900">{{ coordinate.street }}</dd>
+      </div>
+      <div class="flex justify-between py-3 text-sm font-medium">
+        <dt class="text-gray-500">DMA</dt>
+        <dd class="whitespace-nowrap text-gray-900">{{ coordinate.dma }}</dd>
+      </div>
+      <div class="flex justify-between py-3 text-sm font-medium">
+        <dt class="text-gray-500">DMZ</dt>
+        <dd class="whitespace-nowrap text-gray-900">{{ coordinate.dmz }}</dd>
+      </div>
+      <div class="flex justify-between py-3 text-sm font-medium">
+        <dt class="text-gray-500">Latitude</dt>
+        <dd class="whitespace-nowrap text-gray-900">{{ coordinate.lat }}</dd>
+      </div>
+      <div class="flex justify-between py-3 text-sm font-medium">
+        <dt class="text-gray-500">Longitude</dt>
+        <dd class="whitespace-nowrap text-gray-900">{{ coordinate.long }}</dd>
+      </div>
+      <div class="flex justify-between py-3 text-sm font-medium border-b border-gray-200">
+        <dt class="text-gray-500">Source</dt>
+        <dd class="whitespace-nowrap text-gray-900">{{ coordinate.source }}</dd>
+      </div>
+    </dl>
   </li>
 </template>
 
