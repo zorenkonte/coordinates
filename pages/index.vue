@@ -31,14 +31,8 @@ const loadCoordinates = async () => {
 </script>
 
 <template>
-  <div class="container mx-auto p-4">
+  <div class="max-w-sm mx-auto p-4">
     <CoordinateList :coordinates="coordinates" />
     <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600" @click="loadCoordinates">Load More</button>
   </div>
 </template>
-
-<style scoped>
-.container {
-  max-width: 600px;
-}
-</style>
