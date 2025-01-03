@@ -9,4 +9,7 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
   ],
   css: ['~/assets/css/main.css'],
+  nitro: {
+    preset: 'cloudflare-pages',
+  },
 })
