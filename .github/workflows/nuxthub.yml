@@ -12,6 +12,10 @@ jobs:
       contents: read
       id-token: write
 
+    env:
+      SUPABASE_URL: https://222.supabase.co
+      SUPABASE_KEY: 123123
+
     steps:
       - uses: actions/checkout@v4
 
