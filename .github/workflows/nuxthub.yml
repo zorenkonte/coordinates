@@ -13,8 +13,8 @@ jobs:
       id-token: write
 
     env:
-      SUPABASE_URL: https://222.supabase.co
-      SUPABASE_KEY: 123123
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
 
     steps:
       - uses: actions/checkout@v4
