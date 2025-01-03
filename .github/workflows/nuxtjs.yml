@@ -16,16 +16,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      # Install pnpm
       - run: corepack prepare pnpm@latest --activate
-      # Install dependencies and build
       - run: pnpm install
+      # Debugging step to verify secrets are set
+      - run: echo "SUPABASE_URL is set" && echo $SUPABASE_URL | wc -c
+      - run: echo "SUPABASE_KEY is set" && echo $SUPABASE_KEY | wc -c
+      # Build the project
       - run: pnpm build --preset github_pages
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./.output/public
-  # Deployment job
   deploy:
     needs: build
     permissions:
@@ -33,9 +34,4 @@ jobs:
       id-token: write
     environment:
       name: github_pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      url: ${{ steps.deployment
