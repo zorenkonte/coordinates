@@ -1,13 +1,21 @@
 <script setup lang="ts">
+definePageMeta({
+  middleware: 'auth',
+})
+
 const supabase = useSupabaseClient()
 const email = ref('')
 const password = ref('')
 
 async function signInWithPassword() {
-  await supabase.auth.signInWithPassword({
+  const { error } = await supabase.auth.signInWithPassword({
     email: email.value,
     password: password.value,
   })
+  if (!error) {
+    // Redirect to root page after successful login
+    window.location.href = '/'
+  }
 }
 </script>
 
