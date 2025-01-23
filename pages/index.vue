@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { Coordinate } from '@/types/Coordinate'
+import type { Tables } from '@/types/database.types'
 
 const client = useSupabaseClient()
-const coordinates = ref<Coordinate[]>([])
+const coordinates = ref<Tables<'coordinates'>[]>([])
 const limit = 10
 const offset = ref(0)
 
