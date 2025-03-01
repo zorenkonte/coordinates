@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { Tables } from '@/types/database.types'
+import { Search } from 'lucide-vue-next'
 
 const client = useSupabaseClient()
 const coordinates = ref<Tables<'coordinates'>[]>([])
@@ -37,7 +38,7 @@ async function searchByCAN() {
     <div class="flex items-center gap-2 mb-4">
       <UiInput v-model="search" placeholder="Search CAN" />
       <UiButton @click="searchByCAN">
-        Search
+        <Search />
       </UiButton>
     </div>
     <CoordinateList :coordinates="coordinates" />
