@@ -35,10 +35,10 @@ async function searchByCAN() {
 <template>
   <div class="max-w-sm mx-auto p-4">
     <div class="flex items-center gap-2 mb-4">
-      <input v-model="search" type="text" placeholder="Search CAN" class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-500 focus:outline-none focus:border-blue-500">
-      <button class="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600" @click="searchByCAN">
+      <UiInput v-model="search" placeholder="Search CAN" />
+      <UiButton @click="searchByCAN">
         Search
-      </button>
+      </UiButton>
     </div>
     <CoordinateList :coordinates="coordinates" />
   </div>
