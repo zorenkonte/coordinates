@@ -13,4 +13,9 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'cloudflare-pages',
   },
+  runtimeConfig: {
+    public: {
+      appName: '',
+    },
+  },
 })
