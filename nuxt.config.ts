@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxt/fonts',
     'shadcn-nuxt',
+    '@nuxtjs/i18n',
   ],
   css: ['~/assets/css/main.css'],
   nitro: {
