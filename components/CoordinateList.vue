@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import type { Coordinate } from '@/types/Coordinate'
+import type { Tables } from '@/types/database.types'
 
-defineProps<{ coordinates: Coordinate[] }>()
+defineProps<{ coordinates: Tables<'coordinates'>[] }>()
 </script>
 
 <template>
   <ul class="space-y-4">
-    <CoordinateItem v-for="coordinate in coordinates" :key="coordinate.id" :coordinate="coordinate" />
+    <CoordinateItem v-for="coordinate in coordinates" :key="coordinate.can" :coordinate="coordinate" />
   </ul>
 </template>

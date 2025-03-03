@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import type { Coordinate } from '@/types/Coordinate'
+import type { Tables } from '@/types/database.types'
 
-defineProps<{ coordinate: Coordinate }>()
+defineProps<{ coordinate: Tables<'coordinates'> }>()
 </script>
 
 <template>
