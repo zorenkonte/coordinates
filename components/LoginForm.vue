@@ -28,19 +28,19 @@ async function signInWithPassword() {
           <div class="flex flex-col gap-6">
             <div class="flex flex-col items-center text-center">
               <h1 class="text-2xl font-bold">
-                Welcome back
+                {{ $t('welcome') }}
               </h1>
               <p class="text-balance text-muted-foreground">
                 Login to your {{ $config.public.appName }} account
               </p>
             </div>
             <div class="grid gap-2">
-              <Label for="email">Email</Label>
+              <Label for="email">{{ $t('email') }}</Label>
               <Input id="email" v-model="email" type="email" placeholder="zxreign@bringino.com" required />
             </div>
             <div class="grid gap-2">
               <div class="flex items-center">
-                <Label for="password">Password</Label>
+                <Label for="password">{{ $t('password') }}</Label>
                 <a
                   href="#"
                   class="ml-auto text-sm underline-offset-2 hover:underline"
@@ -51,7 +51,7 @@ async function signInWithPassword() {
               <Input id="password" v-model="password" type="password" required />
             </div>
             <Button type="submit" class="w-full">
-              Login
+              {{ $t('login') }}
             </Button>
           </div>
         </form>
