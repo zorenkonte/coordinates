@@ -3,12 +3,13 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Loader2 } from 'lucide-vue-next'
 
 const supabase = useSupabaseClient()
 const email = ref('')
 const password = ref('')
 
-async function signInWithPassword() {
+const { status, execute } = useAsyncData('login', async () => {
   const { error } = await supabase.auth.signInWithPassword({
     email: email.value,
     password: password.value,
@@ -17,14 +18,18 @@ async function signInWithPassword() {
     // Redirect to root page after successful login
     window.location.href = '/'
   }
-}
+}, {
+  immediate: false,
+})
+
+const isPending = computed(() => status.value === 'pending')
 </script>
 
 <template>
   <div class="flex flex-col gap-6">
     <Card class="overflow-hidden">
       <CardContent class="grid p-0 md:grid-cols-2">
-        <form class="p-6 md:p-8" @submit.prevent="signInWithPassword">
+        <form class="p-6 md:p-8" @submit.prevent="execute()">
           <div class="flex flex-col gap-6">
             <div class="flex flex-col items-center text-center">
               <h1 class="text-2xl font-bold">
@@ -50,8 +55,13 @@ async function signInWithPassword() {
               </div>
               <Input id="password" v-model="password" type="password" required />
             </div>
-            <Button type="submit" class="w-full">
-              {{ $t('login') }}
+            <Button type="submit" class="w-full" :disabled="isPending">
+              <template v-if="isPending">
+                <Loader2 class="w-4 h-4 animate-spin" />
+              </template>
+              <template v-else>
+                {{ $t('login') }}
+              </template>
             </Button>
           </div>
         </form>
