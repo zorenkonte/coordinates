@@ -1,35 +1,23 @@
 <script lang="ts" setup>
-import type { Tables } from '@/types/database.types'
 import { Search } from 'lucide-vue-next'
 
 const client = useSupabaseClient()
-const coordinates = ref<Tables<'coordinates'>[]>([])
-const limit = 10
-const offset = ref(0)
 
 const { data } = useAsyncData('coordinates', async () => {
-  const { data, error } = await client.from('coordinates').select().range(offset.value, offset.value + limit - 1)
-  if (error || !data) {
-    return []
-  }
-  return data
-})
-
-onMounted(() => {
-  if (data.value) {
-    coordinates.value = data.value
-    offset.value += limit
-  }
+  const { data } = await client.from('coordinates').select().range(0, 9)
+  return data || []
+}, {
+  default: () => [],
 })
 
 const search = ref('')
 
 async function searchByCAN() {
-  const { data, error } = await client.from('coordinates').select().eq('can', search.value)
-  if (error || !data) {
+  const { data: searchData, error } = await client.from('coordinates').select().eq('can', search.value)
+  if (error || !searchData) {
     return
   }
-  coordinates.value = data
+  data.value = searchData
 }
 </script>
 
@@ -41,6 +29,6 @@ async function searchByCAN() {
         <Search />
       </UiButton>
     </div>
-    <CoordinateList :coordinates="coordinates" />
+    <CoordinateList :coordinates="data" />
   </div>
 </template>
