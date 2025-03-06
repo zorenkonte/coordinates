@@ -65,11 +65,11 @@ const isPending = computed(() => status.value === 'pending')
             </Button>
           </div>
         </form>
-        <div class="relative hidden bg-muted md:block">
+        <div class="relative hidden bg-muted md:flex md:items-center md:justify-center">
           <img
-            src="/placeholder.svg"
+            src="https://kbqatxbcqvppkrjpmras.supabase.co/storage/v1/object/public/images//logo.png"
             alt="Image"
-            class="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+            class="dark:brightness-[0.2] dark:grayscale"
           >
         </div>
       </CardContent>
