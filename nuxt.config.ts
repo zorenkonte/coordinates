@@ -22,6 +22,9 @@ export default defineNuxtConfig({
   app: {
     head: {
       titleTemplate: '%s - MWC',
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon1.ico' },
+      ],
     },
   },
 })
