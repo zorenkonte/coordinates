@@ -19,4 +19,9 @@ export default defineNuxtConfig({
       appName: process.env.APP_NAME,
     },
   },
+  app: {
+    head: {
+      titleTemplate: '%s - MWC',
+    },
+  },
 })

@@ -2,6 +2,9 @@
 definePageMeta({
   middleware: 'auth',
 })
+useHead({
+  title: 'Login',
+})
 </script>
 
 <template>
