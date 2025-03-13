@@ -26,7 +26,7 @@ const isPending = computed(() => status.value === 'pending')
     <UiCard class="overflow-hidden">
       <UiCardContent class="grid p-0 md:grid-cols-2">
         <UiForm v-slot="{ handleSubmit }" as="div">
-          <form class="p-6 md:p-8" @submit="handleSubmit(execute)">
+          <form class="p-6 md:p-8" @submit="handleSubmit($event, execute)">
             <div class="flex flex-col gap-6">
               <div class="flex flex-col items-center text-center">
                 <h1 class="text-2xl font-bold">
