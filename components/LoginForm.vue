@@ -5,7 +5,7 @@ const supabase = useSupabaseClient()
 const email = ref('')
 const password = ref('')
 
-const { status, execute } = useAsyncData('login', async () => {
+const { execute } = useAsyncData('login', async () => {
   const { error } = await supabase.auth.signInWithPassword({
     email: email.value,
     password: password.value,
@@ -17,15 +17,13 @@ const { status, execute } = useAsyncData('login', async () => {
 }, {
   immediate: false,
 })
-
-const isPending = computed(() => status.value === 'pending')
 </script>
 
 <template>
   <div class="flex flex-col gap-6">
     <UiCard class="overflow-hidden">
       <UiCardContent class="grid p-0 md:grid-cols-2">
-        <UiForm v-slot="{ handleSubmit }" as="div">
+        <UiForm v-slot="{ handleSubmit, isSubmitting }" as="div">
           <form class="p-6 md:p-8" @submit="handleSubmit($event, execute)">
             <div class="flex flex-col gap-6">
               <div class="flex flex-col items-center text-center">
@@ -56,8 +54,8 @@ const isPending = computed(() => status.value === 'pending')
                 </div>
                 <UiInput id="password" v-model="password" type="password" required />
               </div>
-              <UiButton type="submit" class="w-full" :disabled="isPending">
-                <template v-if="isPending">
+              <UiButton type="submit" class="w-full" :disabled="isSubmitting">
+                <template v-if="isSubmitting">
                   <Loader2 class="w-4 h-4 animate-spin" />
                 </template>
                 <template v-else>
