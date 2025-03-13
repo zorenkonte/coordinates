@@ -10,7 +10,6 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     'shadcn-nuxt',
     '@nuxtjs/i18n',
-    '@vee-validate/nuxt',
   ],
   css: ['~/assets/css/main.css'],
   nitro: {
