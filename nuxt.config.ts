@@ -17,7 +17,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      appName: process.env.APP_NAME,
+      appName: process.env.NUXT_PUBLIC_APP_NAME,
     },
   },
   app: {
