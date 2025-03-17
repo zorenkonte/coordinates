@@ -1,4 +1,3 @@
-/* eslint-disable node/prefer-global/process */
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
@@ -10,6 +9,7 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     'shadcn-nuxt',
     '@nuxtjs/i18n',
+    '@nuxthub/core',
   ],
   css: ['~/assets/css/main.css'],
   nitro: {
@@ -17,7 +17,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      appName: process.env.NUXT_PUBLIC_APP_NAME,
+      appName: '',
     },
   },
   app: {
