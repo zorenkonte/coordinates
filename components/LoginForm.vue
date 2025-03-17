@@ -1,15 +1,21 @@
 <script setup lang="ts">
+import type { GenericObject, SubmissionHandler } from 'vee-validate'
 import { Loader2 } from 'lucide-vue-next'
 
 const supabase = useSupabaseClient()
 const email = ref('')
 const password = ref('')
 
-async function submit(values, actions) {
-  return supabase.auth.signInWithPassword(values)
+const submit: SubmissionHandler<GenericObject> = async (values, actions) => {
+  actions.setFieldError('invalid_credentials', '')
+
+  return supabase.auth.signInWithPassword({
+    email: values.email,
+    password: values.password,
+  })
     .then(({ error }) => {
       if (error) {
-        actions.setFieldError(error.code, error.message)
+        actions.setFieldError(error.code || '', error.message)
       }
       else {
         window.location.href = '/'
