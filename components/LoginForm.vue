@@ -5,26 +5,25 @@ const supabase = useSupabaseClient()
 const email = ref('')
 const password = ref('')
 
-const { execute } = useAsyncData('login', async () => {
-  const { error } = await supabase.auth.signInWithPassword({
-    email: email.value,
-    password: password.value,
-  })
-  if (!error) {
-    // Redirect to root page after successful login
-    window.location.href = '/'
-  }
-}, {
-  immediate: false,
-})
+async function submit(values, actions) {
+  return supabase.auth.signInWithPassword(values)
+    .then(({ error }) => {
+      if (error) {
+        actions.setFieldError(error.code, error.message)
+      }
+      else {
+        window.location.href = '/'
+      }
+    })
+}
 </script>
 
 <template>
   <div class="flex flex-col gap-6">
     <UiCard class="overflow-hidden">
       <UiCardContent class="grid p-0 md:grid-cols-2">
-        <UiForm v-slot="{ handleSubmit, isSubmitting }" as="div">
-          <form class="p-6 md:p-8" @submit="handleSubmit($event, execute)">
+        <UiForm v-slot="{ isSubmitting }" as="div" @submit="submit">
+          <form class="p-6 md:p-8">
             <div class="flex flex-col gap-6">
               <div class="flex flex-col items-center text-center">
                 <h1 class="text-2xl font-bold">
@@ -34,26 +33,38 @@ const { execute } = useAsyncData('login', async () => {
                   Login to your {{ $config.public.appName }} account
                 </p>
               </div>
-              <div class="grid gap-2">
-                <UiLabel for="email">
-                  {{ $t('email') }}
-                </UiLabel>
-                <UiInput id="email" v-model="email" type="email" placeholder="zxreign@bringino.com" required />
-              </div>
-              <div class="grid gap-2">
-                <div class="flex items-center">
-                  <UiLabel for="password">
-                    {{ $t('password') }}
-                  </UiLabel>
-                  <a
-                    href="#"
-                    class="ml-auto text-sm underline-offset-2 hover:underline"
-                  >
-                    Forgot your password?
-                  </a>
-                </div>
-                <UiInput id="password" v-model="password" type="password" required />
-              </div>
+              <UiFormField v-slot="{ componentField }" name="email">
+                <UiFormItem>
+                  <UiFormLabel for="email">
+                    {{ $t('email') }}
+                  </UiFormLabel>
+                  <UiFormControl>
+                    <UiInput id="email" v-model="email" type="email" placeholder="zxreign@bringino.com" required v-bind="componentField" />
+                  </UiFormControl>
+                  <UiFormMessage name="email" />
+                </UiFormItem>
+              </UiFormField>
+              <UiFormField v-slot="{ componentField }" name="password">
+                <UiFormItem>
+                  <div class="flex items-center">
+                    <UiFormLabel for="password">
+                      {{ $t('password') }}
+                    </UiFormLabel>
+                    <a
+                      href="#"
+                      class="ml-auto text-sm underline-offset-2 hover:underline leading-6"
+                    >
+                      Forgot your password?
+                    </a>
+                  </div>
+                  <UiFormControl>
+                    <UiInput id="password" v-model="password" type="password" required v-bind="componentField" />
+                  </UiFormControl>
+                  <UiFormMessage name="password" />
+                  <UiFormMessage name="invalid_credentials" />
+                </UiFormItem>
+              </UiFormField>
+
               <UiButton type="submit" class="w-full" :disabled="isSubmitting">
                 <template v-if="isSubmitting">
                   <Loader2 class="w-4 h-4 animate-spin" />
