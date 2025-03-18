@@ -3,8 +3,6 @@ import type { GenericObject, SubmissionHandler } from 'vee-validate'
 import { Loader2 } from 'lucide-vue-next'
 
 const supabase = useSupabaseClient()
-const email = ref('')
-const password = ref('')
 
 const submit: SubmissionHandler<GenericObject> = async (values, actions) => {
   actions.setFieldError('invalid_credentials', '')
@@ -12,15 +10,14 @@ const submit: SubmissionHandler<GenericObject> = async (values, actions) => {
   return supabase.auth.signInWithPassword({
     email: values.email,
     password: values.password,
+  }).then(({ error }) => {
+    if (error) {
+      actions.setFieldError(error.code || '', error.message)
+    }
+    else {
+      window.location.href = '/'
+    }
   })
-    .then(({ error }) => {
-      if (error) {
-        actions.setFieldError(error.code || '', error.message)
-      }
-      else {
-        window.location.href = '/'
-      }
-    })
 }
 </script>
 
@@ -45,7 +42,7 @@ const submit: SubmissionHandler<GenericObject> = async (values, actions) => {
                     {{ $t('email') }}
                   </UiFormLabel>
                   <UiFormControl>
-                    <UiInput id="email" v-model="email" type="email" placeholder="zxreign@bringino.com" required v-bind="componentField" />
+                    <UiInput id="email" type="email" placeholder="zxreign@bringino.com" required v-bind="componentField" />
                   </UiFormControl>
                   <UiFormMessage name="email" />
                 </UiFormItem>
@@ -64,7 +61,7 @@ const submit: SubmissionHandler<GenericObject> = async (values, actions) => {
                     </a>
                   </div>
                   <UiFormControl>
-                    <UiInput id="password" v-model="password" type="password" required v-bind="componentField" />
+                    <UiInput id="password" type="password" required v-bind="componentField" />
                   </UiFormControl>
                   <UiFormMessage name="password" />
                   <UiFormMessage name="invalid_credentials" />
