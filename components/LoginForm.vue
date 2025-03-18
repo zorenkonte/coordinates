@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import type { GenericObject, SubmissionHandler } from 'vee-validate'
-import { Loader2 } from 'lucide-vue-next'
+import { useToggle } from '@vueuse/core'
+import { Eye, EyeOff, Loader2 } from 'lucide-vue-next'
 
 const supabase = useSupabaseClient()
+const [showPassword, togglePassword] = useToggle()
 
 const submit: SubmissionHandler<GenericObject> = async (values, actions) => {
   actions.setFieldError('invalid_credentials', '')
@@ -61,7 +63,27 @@ const submit: SubmissionHandler<GenericObject> = async (values, actions) => {
                     </a>
                   </div>
                   <UiFormControl>
-                    <UiInput id="password" type="password" required v-bind="componentField" />
+                    <div class="relative">
+                      <UiInput
+                        id="password" required v-bind="componentField"
+                        :type="showPassword ? 'text' : 'password'"
+                      />
+                      <UiButton
+                        v-if="componentField.modelValue"
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        class="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                        @click="togglePassword()"
+                      >
+                        <template v-if="showPassword">
+                          <Eye class="w-4 h-4" />
+                        </template>
+                        <template v-else>
+                          <EyeOff class="w-4 h-4" />
+                        </template>
+                      </UiButton>
+                    </div>
                   </UiFormControl>
                   <UiFormMessage name="password" />
                   <UiFormMessage name="invalid_credentials" />
