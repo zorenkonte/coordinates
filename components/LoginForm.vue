@@ -125,9 +125,9 @@ const submit: SubmissionHandler<GenericObject> = async (values, actions) => {
         </UiForm>
         <div class="relative hidden bg-muted md:flex md:items-center md:justify-center">
           <img
-            src="https://kbqatxbcqvppkrjpmras.supabase.co/storage/v1/object/public/images//logo.png"
+            src="/girl.png"
             alt="Image"
-            class="dark:brightness-[0.2] dark:grayscale"
+            class="object-cover w-full h-full dark:brightness-[0.2] dark:grayscale"
           >
         </div>
       </UiCardContent>
