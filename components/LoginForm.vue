@@ -5,7 +5,7 @@ import { Eye, EyeOff, Loader2 } from 'lucide-vue-next'
 
 const supabase = useSupabaseClient()
 const [showPassword, togglePassword] = useToggle()
-const { data: banner } = supabase.storage.from('images').getPublicUrl('girl')
+const { data: banner } = supabase.storage.from('images').getPublicUrl('girl.png')
 
 const submit: SubmissionHandler<GenericObject> = async (values, actions) => {
   actions.setFieldError('invalid_credentials', '')
