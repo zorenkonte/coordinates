@@ -5,6 +5,7 @@ import { Eye, EyeOff, Loader2 } from 'lucide-vue-next'
 
 const supabase = useSupabaseClient()
 const [showPassword, togglePassword] = useToggle()
+const { data: banner } = supabase.storage.from('images').getPublicUrl('girl')
 
 const submit: SubmissionHandler<GenericObject> = async (values, actions) => {
   actions.setFieldError('invalid_credentials', '')
@@ -125,7 +126,7 @@ const submit: SubmissionHandler<GenericObject> = async (values, actions) => {
         </UiForm>
         <div class="relative hidden bg-muted md:flex md:items-center md:justify-center">
           <img
-            src="/girl.png"
+            :src="banner.publicUrl"
             alt="Image"
             class="object-cover w-full h-full dark:brightness-[0.2] dark:grayscale"
           >
