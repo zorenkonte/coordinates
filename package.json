@@ -16,7 +16,7 @@
     "@nuxt/eslint": "0.7.5",
     "@nuxt/fonts": "0.10.3",
     "@nuxthub/core": "0.8.18",
-    "@nuxtjs/i18n": "9.2.1",
+    "@nuxtjs/i18n": "9.4.0",
     "@nuxtjs/supabase": "1.4.5",
     "@vee-validate/zod": "^4.15.0",
     "@vueuse/core": "^12.7.0",
