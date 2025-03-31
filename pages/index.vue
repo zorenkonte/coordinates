@@ -19,7 +19,7 @@ const search = ref('')
 const { status, execute } = useAsyncData(
   'search-coordinates',
   async () => {
-    const { data: searchData, error } = await client.from('coordinates').select().eq('can', search.value)
+    const { data: searchData, error } = await client.from('coordinates').select().eq('can', Number(search.value))
     if (error || !searchData) {
       return
     }
@@ -34,7 +34,7 @@ const isSearching = computed(() => status.value === 'pending')
 <template>
   <div class="max-w-sm mx-auto p-4">
     <div class="flex items-center gap-2 mb-4">
-      <UiInput v-model="search" placeholder="Search CAN" />
+      <UiInput v-model.number="search" placeholder="Search CAN" />
       <UiButton :disabled="isSearching" @click="execute">
         <template v-if="isSearching">
           <Loader2 class="w-4 h-4 animate-spin" />
