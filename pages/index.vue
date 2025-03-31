@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import { Loader2, Search } from 'lucide-vue-next'
 
+useHead({
+  title: 'Home',
+})
+
 const client = useSupabaseClient()
 
 const { data } = useAsyncData('coordinates', async () => {
