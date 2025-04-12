@@ -38,6 +38,14 @@ defineProps<{
 }>()
 
 const { isMobile } = useSidebar()
+const { auth } = useSupabaseClient()
+
+function handleSignOut() {
+  auth.signOut().then(() => {
+    // redirect to login page
+    window.location.href = '/login'
+  })
+}
 </script>
 
 <template>
@@ -105,7 +113,7 @@ const { isMobile } = useSidebar()
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>
+          <DropdownMenuItem @click="handleSignOut">
             <LogOut />
             Log out
           </DropdownMenuItem>
