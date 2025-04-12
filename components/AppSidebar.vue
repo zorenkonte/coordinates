@@ -31,11 +31,13 @@ const props = withDefaults(defineProps<SidebarProps>(), {
   variant: 'inset',
 })
 
+const user = useSupabaseUser()
+
 const data = {
   user: {
-    name: 'shadcn',
-    email: 'm@example.com',
-    avatar: '/avatars/shadcn.jpg',
+    name: user.value?.user_metadata.full_name || 'Zoren Konte',
+    email: user.value?.email || 'zxreign@bringino.com',
+    avatar: '/avatars/rickandmorty.jpg',
   },
   navMain: [
     {

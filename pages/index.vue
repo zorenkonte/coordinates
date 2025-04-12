@@ -3,10 +3,8 @@ import AppSidebar from '@/components/AppSidebar.vue'
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
 import { Separator } from '@/components/ui/separator'
 import {
@@ -57,7 +55,7 @@ const isSearching = computed(() => status.value === 'pending')
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
-                <BreadcrumbPage>Coordinates</BreadcrumbPage>
+                <BreadcrumbPage>{{ $t('coordinates') }}</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>

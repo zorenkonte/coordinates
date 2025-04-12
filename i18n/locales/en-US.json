@@ -2,5 +2,7 @@
   "login": "Login",
   "welcome": "Welcome back",
   "password": "Password",
-  "email": "Email"
+  "email": "Email",
+  "coordinates": "Coordinates",
+  "name_fallback": "ZK"
 }
