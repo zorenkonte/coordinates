@@ -1,58 +1,42 @@
 <script setup lang="ts">
-import type { SidebarProps } from '@/components/ui/sidebar'
 import NavMain from '@/components/NavMain.vue'
+
 import NavProjects from '@/components/NavProjects.vue'
+import NavSecondary from '@/components/NavSecondary.vue'
 import NavUser from '@/components/NavUser.vue'
-import TeamSwitcher from '@/components/TeamSwitcher.vue'
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
-  SidebarRail,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  type SidebarProps,
 } from '@/components/ui/sidebar'
-
 import {
-  AudioWaveform,
   BookOpen,
   Bot,
   Command,
   Frame,
-  GalleryVerticalEnd,
+  LifeBuoy,
   Map,
   PieChart,
+  Send,
   Settings2,
   SquareTerminal,
 } from 'lucide-vue-next'
 
 const props = withDefaults(defineProps<SidebarProps>(), {
-  collapsible: 'icon',
+  variant: 'inset',
 })
 
-// This is sample data.
 const data = {
   user: {
     name: 'shadcn',
     email: 'm@example.com',
     avatar: '/avatars/shadcn.jpg',
   },
-  teams: [
-    {
-      name: 'Acme Inc',
-      logo: GalleryVerticalEnd,
-      plan: 'Enterprise',
-    },
-    {
-      name: 'Acme Corp.',
-      logo: AudioWaveform,
-      plan: 'Startup',
-    },
-    {
-      name: 'Evil Corp.',
-      logo: Command,
-      plan: 'Free',
-    },
-  ],
   navMain: [
     {
       title: 'Playground',
@@ -140,6 +124,18 @@ const data = {
       ],
     },
   ],
+  navSecondary: [
+    {
+      title: 'Support',
+      url: '#',
+      icon: LifeBuoy,
+    },
+    {
+      title: 'Feedback',
+      url: '#',
+      icon: Send,
+    },
+  ],
   projects: [
     {
       name: 'Design Engineering',
@@ -163,15 +159,29 @@ const data = {
 <template>
   <Sidebar v-bind="props">
     <SidebarHeader>
-      <TeamSwitcher :teams="data.teams" />
+      <SidebarMenu>
+        <SidebarMenuItem>
+          <SidebarMenuButton size="lg" as-child>
+            <a href="#">
+              <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                <Command class="size-4" />
+              </div>
+              <div class="grid flex-1 text-left text-sm leading-tight">
+                <span class="truncate font-semibold">Acme Inc</span>
+                <span class="truncate text-xs">Enterprise</span>
+              </div>
+            </a>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+      </SidebarMenu>
     </SidebarHeader>
     <SidebarContent>
       <NavMain :items="data.navMain" />
       <NavProjects :projects="data.projects" />
+      <NavSecondary :items="data.navSecondary" class="mt-auto" />
     </SidebarContent>
     <SidebarFooter>
       <NavUser :user="data.user" />
     </SidebarFooter>
-    <SidebarRail />
   </Sidebar>
 </template>
